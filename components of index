@@ -1,0 +1,83 @@
+
+
+DELETE /blogposts
+
+PUT /blogposts
+{
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 0
+  }
+}
+
+GET /blogposts/
+
+PUT /blogposts/_settings
+{
+  "number_of_replicas": 1
+}
+
+PUT /blogposts/_mapping
+{
+  "properties":{
+    "title":{"type":"text"},
+    "content":{"type":"text","analyzer":"simple"},
+    "published_data":{"type":"date"}
+  }
+}
+
+# string
+# numeric
+# data
+# boolean
+# text
+
+#standard analyzer
+# remvoes punchuation
+# lowercase
+# remove stop words
+
+#simple analyser
+#not remove stops words
+# split based on non character
+
+#whitsspace anaylzer
+# split based on  white space
+#no lowercase
+
+#stop analzer
+#lowercase
+#remove stopwords
+#split based on not a letter
+
+#keyword analyzer
+# same text as single term
+
+#pattern analyzer
+# regex to split it into tokens
+# lower case and remove stop words
+
+# language analyzer
+# remove puchuation
+# lower case ,remove stop words
+# stem terms to root form
+
+
+# finger print analyzer
+# for duplicate detection
+# lowercase,sorted,remove stop words
+
+
+
+
+
+GET /blogposts/_mapping
+
+PUT /blogposts/_mapping
+{
+  "properties":{
+    "no_of_likes":{"type":"long"},
+    "tags":{"type":"text"},
+    "status":{"type":"text"}
+  }
+}
