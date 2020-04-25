@@ -1,3 +1,4 @@
+GET /blogposts/_doc/1
 
 # bulk api
 
@@ -14,4 +15,98 @@ POST _bulk
 {"title":"The new features in Java 14","content":"Oracle on September 17 said switch expressions are expected to go final in Java Development Kit 14 (JDK 14). ","published_date":"2019-07-20","tags":["java"],"no_of_likes":11}
 {"index":{"_index":"blogposts","_id":"6"}}
 {"title":"Thread behavior in the JVM","content":"Threading refers to the practice of executing programming processes concurrently to improve application performance.","tags":["java","jvm"],"no_of_likes":3,"status":"draft"}
+
+
+
+# it fetches all the doucments
+#inside the blog post
+GET /blogposts/_search
+
+
+# get all the words that contains
+# elastic search in it
+# it will search in all attributes
+GET /blogposts/_search?q=elasticsearch
+
+
+# search only in content field
+
+# select * from blogpost where content=
+#"elasticsearch"
+
+GET /blogposts/_search?q=content:elasticsearch
+
+# TF-IDF
+# term fre , inverse document fre
+
+
+# it java or performance
+GET /blogposts/_search?q=java performance
+
+
+# query DSL by elastack
+# request body search api
+GET /blogposts/_search
+{
+  "query": {
+    "match": {
+      "title": "Elasticsearch"
+    }
+  }
+}
+
+# for all documents
+GET /blogposts/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+
+#multi match
+GET blogposts/_search
+{
+  "query": {
+    "multi_match": {
+      "query": "elasticsearch",
+      "fields": ["title","tags"]
+    }
+  }
+}
+
+
+# full text search
+# each any every term in search criteria
+# is checked
+GET /blogposts/_search
+{
+  "query": {
+    "match": {
+      "title": "java response"
+    }
+  }
+}
+
+# both the words next together
+GET /blogposts/_search
+{
+  "query": {
+    "match_phrase": {
+      "title": "java response"
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
