@@ -1,0 +1,17 @@
+
+# bulk api
+
+POST _bulk
+{"index":{"_index":"blogposts","_id":"1"}}
+{"title":"Introduction to elasticsearch","content":"Elasticsearch is a distributed, open source search and analytics engine for all types of data","published_date":"2020-01-02","tags":["elasticsearch","distributed","storage"],"no_of_likes":21,"status":"published"}
+{"index":{"_index":"blogposts","_id":"2"}}
+{"title":"Why is Elasticsearch fast?","content":"It is able to achieve fast search responses because, instead of searching the text directly, it searches an index instead","tags":["elasticsearch","fast","index"],"no_of_likes":10,"status":"draft"}
+{"index":{"_index":"blogposts","_id":"3"}}
+{"title":"Introducing the New React DevTools","content":"We are excited to announce a new release of the React Developer Tools, available today in Chrome, Firefox, and (Chromium) Edge","published_date":"2019-08-25","tags":["react","DevTools"],"no_of_likes":2,"status":"published"}
+{"index":{"_index":"blogposts","_id":"4"}}
+{"title":"Angular Tools for High Performance","content":"This post, contains a list of newtools and practices that can help us build faster Angular apps and monitor their performance over time","published_date":"2014-03-22","tags":["Angular","Performance","fast"],"no_of_likes":35,"status":"published"}
+{"index":{"_index":"blogposts","_id":"5"}}
+{"title":"The new features in Java 14","content":"Oracle on September 17 said switch expressions are expected to go final in Java Development Kit 14 (JDK 14). ","published_date":"2019-07-20","tags":["java"],"no_of_likes":11}
+{"index":{"_index":"blogposts","_id":"6"}}
+{"title":"Thread behavior in the JVM","content":"Threading refers to the practice of executing programming processes concurrently to improve application performance.","tags":["java","jvm"],"no_of_likes":3,"status":"draft"}
+
