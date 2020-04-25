@@ -89,11 +89,80 @@ GET /blogposts/_search
 }
 
 # both the words next together
+# it uses term position values
 GET /blogposts/_search
 {
   "query": {
     "match_phrase": {
-      "title": "java response"
+      "content": "oracle on"
+    }
+  }
+}
+
+# blogpost taking about performance
+# it should not be related to angular
+# to handle this type we have bool quroes
+
+# should have more score
+
+GET /blogposts/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "content": "performance"
+          }
+        }
+      ]
+      , "must_not": [
+        {
+          "match": {
+            "title": "angular"
+          }
+        }
+      ]
+      
+      , "should": [
+        {
+          "match": {
+            "title": "react"
+          }
+        }
+      ]
+    }
+  }
+}
+
+
+# filter and search 
+# we need post that have more than 20 #likes
+
+#for string term
+#for data or cnt range filter
+
+GET /blogposts/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "tags": "elasticsearch"
+          }
+        }
+      ],
+      "filter": [
+        {
+          "range": {
+            "no_of_likes": {
+              "gte": 20
+            }
+          }
+        }
+      ]
+      
     }
   }
 }
