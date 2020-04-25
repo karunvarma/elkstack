@@ -1,1 +1,20 @@
 
+big data processing with spark and scala
+
+[big,data,processing,with,spark,scala]
+
+pro--> will not fetch any result
+
+n gram
+word=search
+len=1 [s,e,a,r,c,h]
+len=2 [se,ea,rc,ch]
+
+edge grams
+word=search
+s
+se
+sea
+sear
+search
+
