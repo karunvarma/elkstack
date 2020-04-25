@@ -1,0 +1,41 @@
+GET /_search
+{
+  "query": {
+    "match": {
+      "title": "react"
+    }
+  }
+}
+
+// filter the courses
+// emp filter on rating
+
+
+GET /_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "title": "react"
+          }
+        }
+      ],
+      "filter": [
+        {
+          "range": {
+            "rating": {
+              "gte": 4.5
+            }
+          }
+        }
+      ]
+      
+    }
+  }
+}
+
+
+
+
