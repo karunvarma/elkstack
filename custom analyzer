@@ -21,6 +21,7 @@ tokenizer+lowecase token filer+stop token filter
 
 DELETE /blogposts
 
+
 PUT /blogposts
 {
   "settings": {
@@ -52,8 +53,59 @@ PUT /blogposts
 
 GET /blogposts
 
+# to check how inverted indexs
 POST /blogposts/_analyze
 {
   "analyzer": "my_custom_analyzer",
   "text":"this is html <p> word "
 }
+
+
+
+
+
+PUT /blogposts
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "my_custom_analyzer":{
+          "type":"custom",
+          "tokenizer":"punctuation",
+          "char_filter":["symbol"],
+          "filter":["my_stop","lowercase"]
+          
+        }
+      },
+      "tokenizer": {
+        "punctuation":{
+          "type":"pattern",
+          "pattern":"[ .!,?]"
+        }
+      },
+      "char_filter": {
+        "symbol":
+        {
+          "type":"mapping",
+          "mappings":["& => and",":) => happy",":( => sad "]
+        }
+      }
+      , "filter": {
+        "my_stop":{
+          "type":"stop",
+          "stopwords":"_english_"
+        }
+      }
+    }
+  }
+}
+
+# and is removed
+
+# to check how inverted indexs
+POST /blogposts/_analyze
+{
+  "analyzer": "my_custom_analyzer",
+  "text":"Big Data processing using spark & scala :)"
+}
+
