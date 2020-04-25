@@ -1,0 +1,20 @@
+
+-----------------------------------------------
+
+tokenize
+
+document --> characterfiler(replace incorrect words)
+
+where r you? --> where are you?
+remove html tags 
+& --> and .... a lot more
+
+next tokenizer based on choosen tokenizer
+
+next token filter 
+ex lowercase token filter NoSql-->nosql
+
+============================================
+
+standard analyzer it contains
+tokenizer+lowecase token filer+stop token filter
