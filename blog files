@@ -56,7 +56,7 @@ GET /blogposts/_search
 }
 
 # for all documents
-GET /blogposts/_search
+GET /blogpost/_search
 {
   "query": {
     "match_all": {}
@@ -168,13 +168,29 @@ GET /blogposts/_search
 }
 
 
+# for all docs inside the cluseter 
+GET /_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
 
+# check in multiple indices
+GET /index1,index2/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
 
-
-
-
-
-
+# we can use wild card
+GET /blog*/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
 
 
 
