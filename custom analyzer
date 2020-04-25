@@ -18,3 +18,42 @@ ex lowercase token filter NoSql-->nosql
 
 standard analyzer it contains
 tokenizer+lowecase token filer+stop token filter
+
+DELETE /blogposts
+
+PUT /blogposts
+{
+  "settings": {
+    "analysis": {
+      
+      "analyzer": {
+        "my_custom_analyzer":
+        {
+          "type":"custom",
+          "char_filter":["html_strip"],
+          "tokenizer":"standard",
+          "fliter":["lowercase"]
+        }
+        
+      }
+    }
+  }
+  
+  , "mappings": {
+    "properties":
+    {
+      "title":{"type":"text"},
+      "content":{"type":"text","analyzer":"my_custom_analyzer"},
+      "published_data":{"type":"date"}
+    }
+  }
+  
+}
+
+GET /blogposts
+
+POST /blogposts/_analyze
+{
+  "analyzer": "my_custom_analyzer",
+  "text":"this is html <p> word "
+}
