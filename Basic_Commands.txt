@@ -1,0 +1,51 @@
+
+# to create a index 
+PUT /blogposts/_doc/1
+{
+  "title":"introduction",
+  "content":"elsatic search is a distributed ,open src and alaytics engine for all types of data",
+  "published_data":"2020-01-02",
+  "tags":["elasticsearch","storage"]
+}
+
+# to search for a document
+GET /blogposts/_doc/1
+
+# to check if document exist
+HEAD /blogposts/_doc/1
+
+
+# to index a document with random unique ID
+PUT /blogposts/_doc/1
+{
+  "title":"title updated"
+}
+
+# to update the document 
+POST /blogposts/_update/1
+{
+  "doc":{
+    "no_of_like":2,
+    "title":"karun varma"
+  }
+}
+
+# to delete the document
+DELETE /blogposts/_doc/1
+
+# to delete the index
+DELETE /blogposts
+
+
+
+#Performs multiple indexing or delete operations in a single API call.
+#reduces overhead and can greatly increase indexing speed.
+
+POST _bulk
+{"index":{"_index":"blogposts","_id":"1"}}
+{"title":"hello world"}
+{"index":{"_index":"blogposts","_id":"2"}}
+{"title":"hello karun"}
+{"update":{"_id":"1","_index":"blogposts"}}
+{"doc":{"title":"hello ELK"}}
+{"delete":{"_index":"blogposts","_id":"2"}}
