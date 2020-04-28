@@ -1,0 +1,101 @@
+GET /_cat/indices
+DELETE account
+
+GET bank/account/_search
+
+GET bank/_search
+{
+  "query": {
+    "match": {
+      "state": "CA"
+    }
+  }
+}
+
+#multiple conditons
+
+
+GET bank/_search
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "match": {
+            "state": "CA"
+          }
+        },
+        {
+          "match": {
+            "lastname": {
+              "query": "smith",
+              "boost": 3
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+
+
+
+GET bank/_search
+{
+  "query": {
+    "term": {
+      "account_number": {
+        "value": 516
+      }
+    }
+    
+  }
+}
+
+GET bank/_search
+{
+  "query": {
+    "terms": {
+      "account_number": [815,516]
+    }
+  }
+}
+
+# range query
+GET bank/_search
+{
+  "query": {
+    "range": {
+      "account_number": {
+        "gte": 516,
+        "lte": 851
+      }
+    }
+  }
+}
+
+
+
+#match query for text field
+GET bank/_search
+{
+  "query": {
+    "match": {
+      "state": "ri"
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
