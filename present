@@ -1,0 +1,50 @@
+
+
+# creating an index
+PUT company
+
+# inserting a document
+PUT company/_doc/1
+{
+  "name":"NCR",
+  "location":"hyd"
+}
+
+
+#update query
+POST /company/_update/1
+{
+  "doc": {
+    "location":"atlanta"  
+  }
+}
+
+
+# read the document
+GET company/_doc/1
+
+# delete the index
+DELETE company
+
+# delete the document
+DELETE company/_doc/1
+
+
+
+GET /_analyze
+{
+  "analyzer" : "standard",
+  "text" : "THIS cat is  eating"
+}
+
+# stemming and root word
+GET /_analyze
+{
+  "analyzer" : "english",
+  "text" : "this cat is eating"
+}
+
+
+
+
+
