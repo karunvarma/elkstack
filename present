@@ -44,7 +44,77 @@ GET /_analyze
   "text" : "this cat is eating"
 }
 
+DELETE status
 
+# custom mapping
+
+PUT status
+
+PUT status/_mapping
+{
+  "properties":
+  {
+    "status":
+    {
+      "type":"text"
+    }
+  }
+}
+
+POST status/_doc
+{
+  "status":true
+}
+
+
+POST status/_doc
+{
+  "status":1
+}
+
+
+# text and keyword
+
+
+GET status/_mapping
+
+DELETE my_index
+
+PUT my_index
+{
+  "mappings": {
+    "properties": {
+      "tags": {
+        "type":  "text"
+      }
+    }
+  }
+}
+
+POST _bulk
+{"index":{"_index":"my_index","_id":"1"}}
+{"tags":"Big data"}
+{"index":{"_index":"my_index","_id":"2"}}
+{"tags":"Java"}
+
+GET my_index/_search
+
+
+POST my_index/_analyze
+{
+  "analyzer": "standard",
+  "text": "Big data"
+}
+
+GET my_index/_search
+{
+  "query":
+  {
+    "match": {
+      "tags": "big"
+    }
+  }
+}
 
 
 
