@@ -1,0 +1,72 @@
+
+
+# basic term query
+
+GET /termtest/_mapping
+
+
+#term
+GET termtest/_search
+{
+  "query": {
+    "term": {
+      "gender": {
+        "value": "Male"
+      }
+    }
+  }
+}
+
+#terms
+GET termtest/_search
+{
+  "query": {
+    "terms": {
+      "first_name": [
+        "Leo",
+        "Bear"
+      ]
+    }
+  }
+}
+
+#prefix query
+GET termtest/_search
+{
+  "query": {
+    "prefix": {
+      "first_name": {
+        "value": "Ja"
+      }
+    }
+  }
+}
+#range quesry
+
+GET termtest/_search
+{
+  "query": {
+    "range": {
+      "age": {
+        "gte": 20,
+        "lte": 30
+      }
+    }
+  }
+}
+
+
+
+#fuzzy search
+GET termtest/_search
+{
+  "query": {
+    "fuzzy": {
+      "gender": {
+        "value": "Mafo"
+      }
+    }
+  }
+}
+
+
