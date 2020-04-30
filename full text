@@ -1,0 +1,100 @@
+# full text search
+
+
+GET fb-post/_mapping
+
+GET fb-post/_search
+{
+  "query": {
+    "match": {
+      "description": "confidence"
+    }
+  }
+}
+
+# multiple words
+# default or
+GET fb-post/_search
+{
+  "query": {
+    "match": {
+      "description": {
+         "query":"confidence buildings",
+         "operator": "or"
+      }
+    }
+  }
+}
+
+# multmatch
+
+GET fb-post/_search
+{
+  "query": {
+    "multi_match": {
+      "query": "Giffords family",
+      "fields": ["name^5","description"]
+    }
+  }
+}
+
+# query string query
+POST fb-post/_search
+{
+  "query": {
+    "query_string": {
+      "query" : "(step down) OR (official act)",
+      "fields" : ["description","name"]
+      
+    }
+  }
+}
+
+
+#match_phrase query
+POST fb-post/_search
+{
+  "query": {
+    "match_phrase": {
+       "description" : "deeply concerned"
+    }
+  }
+}
+
+POST fb-post/_search
+{
+  "query": {
+    "match_phrase": {
+       "description": {
+         "query": "deeply concerned",
+          "slop": 2
+       }
+    }
+  }
+}
+
+POST fb-post/_search
+{
+  "query": {
+    "match_phrase": {
+       "description" : "deeply concerned ab"
+    }
+  }
+}
+
+#match_phrase_prefix query
+
+POST fb-post/_search
+{
+  "query": {
+    "match_phrase_prefix": {
+      "description": "deeply concerned ab"
+    }
+  }
+}
+
+
+
+
+
+
