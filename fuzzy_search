@@ -1,0 +1,92 @@
+
+
+POST _bulk
+{"index":{"_index":"fuzzytext","_id":1}}
+{"title":"i will marry you because I love you"}
+{"index":{"_index":"fuzzytext","_id":2}}
+{"title":"i will live with harry"}
+{"index":{"_index":"fuzzytext","_id":3}}
+{"title":"i'm sorry for your loss"}
+
+
+GET fuzzytext/_search
+
+
+# fuzzy search
+
+GET fuzzytext/_search
+{
+  "query": {
+    "fuzzy":{
+      "title":{
+        "value":"harry"
+        , "fuzziness": 1
+      }
+    }
+  }
+}
+
+GET fuzzytext/_search
+{
+  "query": {
+    "fuzzy":{
+      "title":{
+        "value":"harry"
+        , "fuzziness": 2
+      }
+    }
+  }
+}
+
+
+# 0 1 2 ->0
+# 3 4 5 -> 1
+# above 5 -> 2
+
+
+POST _bulk
+{"index":{"_index":"fuzzytextauto","_id":1}}
+{"title":"don't be so hard on me"}
+{"index":{"_index":"fuzzytextauto","_id":2}}
+{"title":"i will live with my friends"}
+{"index":{"_index":"fuzzytextauto","_id":3}}
+{"title":"love this twitter trends"}
+
+
+
+
+GET fuzzytextauto/_search
+{
+  "query": {
+    "fuzzy":{
+      "title":{
+        "value":"me",
+        "fuzziness": "auto"
+      }
+    }
+  }
+}
+
+
+GET fuzzytextauto/_search
+{
+  "query": {
+    "fuzzy":{
+      "title":{
+        "value":"trends",
+        "fuzziness": "auto"
+      }
+    }
+  }
+}
+
+#"fuziness": "auto:4,6"
+
+
+
+
+
+
+
+
+
